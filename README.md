@@ -29,6 +29,12 @@ Puedes probar esta versión de manera gratuita abajo.
 4. **Salir**
     - Puedes cerrar sesión en el menu de Usuario / Salir
     
+#### PLANTILLA DE EJEMPLO:
+
+Puedes ver una foto de todo lo que ofrece ahora mismo.
+(https://res.cloudinary.com/manuelentrena/image/upload/v1594891977/2020-07-16_11h29_17_zlw56z.png)
+
+    
 #### POLÍTICA DE USO:
 
     MIT License
