@@ -12,7 +12,7 @@ Puedes probar esta versión de manera gratuita abajo.
 
 [ENLACE DE LA APLICACIÓN](https://curriculumweb.herokuapp.com/login)
 
-- #### INSTRUCCIONES DE USO:
+#### INSTRUCCIONES DE USO:
 
 1. **Login**
     - Puedes usar cualquier correo, la aplicación solo determina que no sea el mismo
@@ -29,7 +29,7 @@ Puedes probar esta versión de manera gratuita abajo.
 4. **Salir**
     - Puedes cerrar sesión en el menu de Usuario / Salir
     
-- #### POLÍTICA DE USO:
+#### POLÍTICA DE USO:
 
     MIT License
 
