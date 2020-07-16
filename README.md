@@ -12,5 +12,14 @@ Puedes probar esta versión de manera gratuita abajo.
 
 [ENLACE DE LA APLICACIÓN](https://curriculumweb.herokuapp.com/login)
 
+#### INSTRUCCIONES DE USO:
+
+1. Elemento de lista 1
+2.  Elemento de lista 2
+    - Elemento de lista 3
+    - Elemento de lista 4
+        1. Elemento de lista 5
+        2. Elemento de lista 6
+
 
 
