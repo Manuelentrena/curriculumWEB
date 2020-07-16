@@ -12,6 +12,20 @@ Puedes probar esta versión de manera gratuita abajo.
 
 [ENLACE DE LA APLICACIÓN](https://curriculumweb.herokuapp.com/login)
 
+#### OBJETIVOS:
+
+La intención se llegar a todo el público posible. Para ello la aplicación se propone que:
+
+    - Responsive Design
+    - Mejorar el diseño a una imagen más corporativa
+    - Estructura de datos para todo el mundo
+    - Ofrecer gran cantidad de plantillas
+    - Interacción con videos
+    - Integración en redes sociales
+    - Aumentar la seguridad
+    - Aumentar el rendimiento de carga
+
+
 #### INSTRUCCIONES DE USO:
 
 1. **Login**
@@ -31,7 +45,7 @@ Puedes probar esta versión de manera gratuita abajo.
     
 #### PLANTILLA DE EJEMPLO:
 
-Puedes ver una foto de todo lo que ofrece ahora mismo.
+Puedes ver una foto de la plantilla por defecto.
 
 ![Screenshot](https://res.cloudinary.com/manuelentrena/image/upload/v1594891977/2020-07-16_11h29_17_zlw56z.png)
     
