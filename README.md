@@ -32,8 +32,8 @@ Puedes probar esta versión de manera gratuita abajo.
 #### PLANTILLA DE EJEMPLO:
 
 Puedes ver una foto de todo lo que ofrece ahora mismo.
-(https://res.cloudinary.com/manuelentrena/image/upload/v1594891977/2020-07-16_11h29_17_zlw56z.png)
 
+![Screenshot](https://res.cloudinary.com/manuelentrena/image/upload/v1594891977/2020-07-16_11h29_17_zlw56z.png)
     
 #### POLÍTICA DE USO:
 
