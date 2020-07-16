@@ -1,0 +1,66 @@
+{% extends "layout_admin.twig" %}
+
+{% block content %}
+  <h1 class="display-5">Redes Sociales</h1>
+  <div class="alert alert-{{ classMensaje }}" role="alert">
+    {% for note in mensaje %}
+      {{ note | raw }} <br>
+    {% endfor %}
+  </div>
+  <form action="../add/social" method="POST" enctype = "multipart/form-data">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <label for="email">Red Social:</label>
+          <select class="form-control" name="tipo[]">
+            <option value="Facebook">Facebook</option>
+            <option value="Twitter">Twitter</option>
+            <option value="Instagram">Instagram</option>
+            <option value="Linkendin">Linkendin</option>
+          </select>
+
+        </div>
+        <div class="col">
+          <label for="link">Link:</label>
+          <label class="sr-only" for="inlineFormInputGroup">Link</label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text" data-toggle="tooltip" data-placement="top" title="Twitter @name&#13;Facebook /name&#13;Instagram /name&#13;Linkendin /name" style="cursor: pointer">@</div>
+            </div>
+            <input type="text" name ="link" class="form-control" id="inlineFormInputGroup" placeholder="link">
+          </div>
+        </div>
+        <div class="col d-flex align-items-end pb-2">
+          <button class="btn btn-info" type="submit" name="mode" value="save">Guardar </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <br><br>
+  <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Red Social</th>
+      <th scope="col">Link</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for key, social in listSocial %}
+      <tr>
+        <th scope="row">{{key}}</th>
+        <td>{{social['nombre']}}</td>
+        <td>@{{social['url']}}</td>
+        <td>
+          <form action="../add/social" method="POST" enctype = "multipart/form-data" class="d-flex align-items-center">
+            <button class="btn btn-danger" type="submit" name="mode" value="delete"><i class="far fa-trash-alt"></i></button>
+            <label for="nombre"></label>
+            <input class="form-control-plaintext invisible" type="text" name="nombre" value="{{social['nombre']}}">
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

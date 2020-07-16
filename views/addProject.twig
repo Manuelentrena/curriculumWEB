@@ -1,0 +1,128 @@
+{% extends "layout_admin.twig" %}
+
+{% block content %}
+  <div class="row d-flex justify-content-between align-items-center">
+    <h1 class="display-5">Proyectos</h1>
+    <div class="d-flex">
+      <a class="page-link rounded-pill border-info" href="../add/project?pro=new"><i class="fas fa-plus-square text-info"></i></a>
+      <form action="../add/project" method="POST" enctype = "multipart/form-data" class="d-flex">
+        <button class="page-link rounded-pill border-info" type="submit" name="mode" value="delete"><i class="fas fa-trash text-danger"></i></button>
+        <label for="id"></label>
+        <input class="form-control" type="hidden" name="id" value="{% if projectSelected['id'] is empty %}new{% else %}{{projectSelected['id']}}{% endif %}">
+      </form>
+    </div>
+  </div>
+
+  <div class="alert alert-{{ classMensaje }}" role="alert">
+    {% for note in mensaje %}
+      {{ note | raw }} <br>
+    {% endfor %}
+  </div>
+
+  <form action="../add/project" method="POST" enctype = "multipart/form-data">
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col mt-5">
+          <label for="nombre">Nombre:</label>
+          <input class="form-control" type="text" name="nombre" value="{{ projectSelected['nombre'] }}">
+        </div>
+
+        <div class="col">
+          <div class="form-group d-flex justify-content-center align-items-center mt-3">
+            {% if projectSelected['url_img'] != NULL %}
+              <img id="user-photo" class="img_project" src="{{ projectSelected['url_img'] }}">
+            {% else %}
+              <img id="user-photo" class="img_project" src="https://eu.ui-avatars.com/api/?name=Proyecto&size=150&length=8&font-size=0.17&background=ffa07a&color=fff&bold=true">
+            {% endif %}
+              <input type="hidden" class="form-control" name="url_img" id="url_avatar"  class="invisible">
+              <button type="button" class="btn btn-secondary btn-sm ml-3" id="avatar">Subir Imagen</button>
+          </div>
+        </div>
+
+        <div class="col-0">
+          <label for="id"></label>
+          <input class="form-control" type="hidden" name="id" value="{% if projectSelected['id'] is empty %}new{% else %}{{projectSelected['id']}}{% endif %}">
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col">
+          <div class="form-group">
+            <label for="description">Descripción:</label>
+            <textarea class="form-control" id="" rows="5" name="description">{{ projectSelected['description'] }}</textarea>
+          </div>
+        </div>
+
+    </div>
+
+  {% for key, skill in listSkills %}
+    <div class="form-check form-check-inline">
+        <input class="form-check-input invisible" type="checkbox" id="{{skill['id']}}" name="checkbox[]" value="{{skill['id']}}"
+    {% for key, skill2 in listSkillsSelected %}
+      {% if skill['id'] == skill2['id'] %}
+        checked
+      {% endif %}
+    {% endfor %}
+        ><label class="form-check-label invisible" for="{{skill['id']}}">{{skill['nombre']}}</label>
+    </div>
+  {% endfor %}
+
+    <div class="row d-flex lists">
+      <div class="col-5">
+        <div class="col-5 mx-auto px-0">HABILIDADES PERSONALES</div>
+        <div class="border border-info  w-90 auto m-3 list card-body" name="origen">
+          {% for key, skill in listSkillsNoSelected %}
+            <div class="card-header bg-secondary text-white mx-2 my-1 list-item skill" draggable="true" id="{{skill['id']}}">
+              {{skill['nombre']}},{{skill['tipo']}}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="col-1 align-items-center d-flex flex-column justify-content-center">
+        ARRASTRA
+        <i class="fas fa-arrows-alt-h"></i>
+      </div>
+
+      <div class="col-5">
+        <div class="col-5 mx-auto px-0">HABILIDADES DEL PROYECTO</div>
+        <div class="border border-info w-90 m-3 list card-body" name="destino">
+          {% for key, skill in listSkillsSelected %}
+            <div class="card-header bg-secondary text-white mx-2 my-1 list-item skill" draggable="true" id="{{skill['id']}}">
+              {{skill['nombre']}},{{skill['tipo']}}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row d-flex justify-content-between align-items-center">
+      <nav aria-label="..." class="mt-2">
+        <ul class="pagination">
+          {% for key, project in listProjects %}  
+            {% if projectSelected['id'] == project['id'] %}
+              <li class="page-item active" aria-current="page"><a class="page-link" href={{"../add/project?pro=" ~ project['id']}}>{{key+1}}<span class="sr-only">(current)</span></a></li>
+            {% else %}
+              <li class="page-item"><a class="page-link" href={{"../add/project?pro=" ~ project['id']}}>{{key+1}}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </nav>
+      <button class="btn btn-info mb-3" type="submit" name="mode" value="save">Guardar </button>   
+    </div>
+
+        
+    
+
+
+
+  </div>
+</form>
+
+    
+
+{% endblock content %}

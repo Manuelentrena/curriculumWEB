@@ -1,0 +1,237 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+  <form action="add/person" method="get">
+    <button class="btn btn-info fixed-bottom m-3" type="submit"><i class="fas fa-arrow-left"></i> Atrás</button>
+  </form>
+
+  <div class="alert alert-warning alert-dismissible fade show sticky-top" role="alert">
+    <strong>Hola {{user}}!</strong> Aquí puedes ver un prototipo de tu curriculum.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div id="resume-header" class="row py-3">
+
+      <div class="col-3">
+        {% if datosPersonales['avatar'] != NULL %}
+          <img id="profile-picture" src={{datosPersonales['avatar']}} alt="foto avatar">
+        {% else %}
+          <img id="profile-picture" src={{"https://ui-avatars.com/api/?name=" ~ datosPersonales['nombre'] ~ "+" ~ datosPersonales['apellido'] ~ "&size=255"}} alt="foto avatar">
+        {% endif %}
+      </div>
+      <div class="col ml-3 d-flex flex-column justify-content-center">
+
+        <div class="row">
+          <p class="h1 ">{{datosPersonales['nombre'] ~ " " ~ datosPersonales['apellido']}} </p>
+        </div>
+
+        <div class="row ml-2">
+          <p class="h3">{{datosPersonales['especialidad']}}</p>
+        </div>
+
+        <div class="row">
+          <ul class="email pl-4">
+            <li>{{datosPersonales['email']}}</li>
+
+          </ul>
+          <ul class="phone pl-3">
+            <li>{{datosPersonales['telefono']}}</li>
+          </ul>
+        </div>
+
+        <div class="row">
+        {% for red in datosRedes %}
+          {% if red['nombre'] == "Twitter" %}
+            <a href={{"https://twitter.com/" ~ red['url']}}><img src={{"public/resources/" ~ red['nombre'] ~ ".svg"}}  class="icon_social mx-1"/></a>
+          {% elseif red['nombre'] == "Facebook" %}
+            <a href={{"https://www.facebook.com/" ~ red['url']}}><img src={{"public/resources/" ~ red['nombre'] ~ ".svg"}}  class="icon_social mx-1"/></a>
+          {% elseif red['nombre'] == "Linkendin" %}
+            <a href={{"https://www.linkedin.com/in/" ~ red['url']}}><img src={{"public/resources/" ~ red['nombre'] ~ ".svg"}}  class="icon_social mx-1"/></a>
+          {% elseif red['nombre'] == "Instagram" %}
+            <a href={{"https://www.instagram.com/" ~ red['url']}}><img src={{"public/resources/" ~ red['nombre'] ~ ".svg"}}  class="icon_social mx-1"/></a>
+          {% endif %}
+        {% endfor %}
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h2 class="border-bottom-gray" >Descripción</h2>
+        <p class="mx-5 my-3 h6">
+          {{datosPersonales['descripcion']}}
+        </p>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col">
+        <div>
+          <h3 class="border-bottom-gray" >Experiencia Laboral</h3>
+          
+          {% for experiencia in datosExperiencias %}
+          <div class="m-2 p-1">
+
+            <ul class="d-flex align-items-center justify-content-start m-0 mt-2 ml-3">
+              <b><li class="h7 m-0">{{experiencia['inicio']}} </li></b>
+              <b><li class="h7 m-0 mr-3">/ {{experiencia['fin']}} </li></b>
+              <div class="spinner-grow text-info mr-3" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+              <div class="w-50 bg-warning rounded">
+                <li class="h3 ml-3 m-0">{{experiencia['empresa']}}</li>
+              </div>
+            </ul>
+            <div class="row">
+              <div class="col-4"></div>
+              <div class="col ml-1">
+                <div class=" d-flex w-100 mb-0 bg-info rounded">
+                  <p class="h5 m-0 "><i>{{experiencia['puesto']}}</i></p>
+
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-4"></div>
+              <div class="col ml-0 my-3 p-0">
+              <p class="h5 m-1 "><u>Tareas:</u></p>
+                {% for tarea in datosTareas %}
+                  {% if tarea['id'] == experiencia['id'] %}
+                      <p class="h6 m-0 ">{{tarea['description']}}</p>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+
+          </div>
+
+          {% endfor %}
+
+        </div>
+        {# PROYECTOS #}
+        <div class="">
+
+            <h3 class="border-bottom-gray">Proyectos</h3>
+
+            <div class="project p-3 m-0">
+
+
+            {% for proyecto in datosProyectos %}
+                <div class="row my-4 mb-5">
+                  <div class="col-3 p-3">
+                    {% if proyecto['url_img'] != NULL %}
+                      <img id="profile-proyect" src={{ proyecto['url_img'] }} alt="foto proyecto">
+                    {% else %}
+                      <img id="profile-proyect" src={{"https://ui-avatars.com/api/?name=" ~ proyecto['nombre'] ~ "&size=200"}} alt="foto proyecto">
+                    {% endif %}
+                  </div>
+                  <div class="col">
+                    <div class="row">
+                      <h5 class="mb-4">{{proyecto['nombre']}}</h5>
+                    </div>
+                    <div class="row mb-2">
+                      <p>{{proyecto['description']}}</p>
+                    </div>
+                    <div class="row mb-5">
+                      <strong>Tecnologías usadas:&nbsp&nbsp</strong>
+                        {% for habPro in datosHabPro %}
+                          {% if proyecto['id'] == habPro['id'] %}
+                            <span class="badge badge-info mr-1">{{habPro['nombre']}}</span>
+                          {% endif %}
+                        {% endfor %}
+                    </div>
+                  </div>
+                </div>
+
+            {% endfor %}
+
+            </div>
+            
+
+        </div>
+
+      </div>
+
+
+      <div class="col-3">
+        <h3 class="border-bottom-gray" >Habilidades</h3>
+
+        <ul class="h2 d-flex flex-column p-0 w-100 justify-content-start m-3 color_hab p-2 rounded">
+        <li class="h4 w-100 tipo_hab_conocimiento">Técnicas</li>
+        {% for tecnica in datosTecnicas %}
+          <li class="h6 w-100 ml-3">{{tecnica['nombre']}}
+            <div class="progress mr-3">
+              <div class="progress-bar bg-info " role="progressbar" style={{"width:" ~ tecnica['nivel'] ~ "%"}} aria-valuenow="{{tecnica['nivel']}}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </li>
+        {% endfor %}
+        </ul>
+
+        <ul class="h2 d-flex flex-column p-0 w-100 justify-content-start m-3 color_hab p-2 rounded">
+        <li class="h4 w-100 tipo_hab_plataforma">Plataformas</li>
+        {% for plataforma in datosPlataformas %}
+          <li class="h6 w-100 ml-3">{{plataforma['nombre']}}
+            <div class="progress mr-3">
+              <div class="progress-bar bg-info " role="progressbar" style={{"width:" ~ plataforma['nivel'] ~ "%"}} aria-valuenow="{{plataforma['nivel']}}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </li>
+        {% endfor %}
+        </ul>
+
+        <ul class="h2 d-flex flex-column p-0 w-100 justify-content-start m-3 color_hab p-2 rounded">
+        <li class="h4 w-100 tipo_hab_lenguaje">Lenguajes</li>
+        {% for lenguaje in datosLenguajes %}
+          <li class="h6 w-100 ml-3">{{lenguaje['nombre']}}
+            <div class="progress mr-3">
+              <div class="progress-bar bg-info " role="progressbar" style={{"width:" ~ lenguaje['nivel'] ~ "%"}} aria-valuenow="{{lenguaje['nivel']}}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </li>
+        {% endfor %}
+        </ul>
+
+        <ul class="h2 d-flex flex-column p-0 w-100 justify-content-start m-3 color_hab p-2 rounded">
+        <li class="h4 w-100 tipo_hab_framework">Frameworks</li>
+        {% for framework in datosFrameworks %}
+          <li class="h6 w-100 ml-3">{{framework['nombre']}}
+            <div class="progress mr-3">
+              <div class="progress-bar bg-info " role="progressbar" style={{"width:" ~ framework['nivel'] ~ "%"}} aria-valuenow="{{framework['nivel']}}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </li>
+        {% endfor %}
+        </ul>
+
+        <ul class="h2 d-flex flex-column p-0 w-100 justify-content-start m-3 color_hab p-2 rounded">
+        <li class="h4 w-100 tipo_hab_herramienta">Herramientas</li>
+        {% for herramienta in datosHerramientas %}
+          <li class="h6 w-100 ml-3">{{herramienta['nombre']}}
+            <div class="progress mr-3">
+              <div class="progress-bar bg-info " role="progressbar" style={{"width:" ~ herramienta['nivel'] ~ "%"}} aria-valuenow="{{herramienta['nivel']}}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </li>
+        {% endfor %}
+        </ul>
+    
+        <h3 class="border-bottom-gray" >Idiomas</h3>
+        <div class=" ml-3 mt-3 pb-1 pt-3 w-100 color_idioma rounded">
+        {% for idioma in datosIdiomas %}
+          <ul class="pl-3">
+            <li><img src={{"public/resources/" ~ idioma['nombre'] ~ ".svg"}}  class="icon_idioma mx-1"/></li>
+            <li>&nbsp{{ idioma['nombre'] }} </li>
+            <li><strong>&nbsp&nbsp{{idioma['nivel']}}</strong></li>
+          </ul>
+        {% endfor %}
+      </div>
+
+      </div>
+    </div>
+    <div id="resume-footer" class="row">
+      <div class="col p-0">
+          <p class="m-0">Designed by @ManuelEntrena</p>
+          <p class="footer__logo">ME</p>
+      </div>
+    </div>
+{% endblock %}

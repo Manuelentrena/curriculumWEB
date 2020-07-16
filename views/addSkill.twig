@@ -1,0 +1,78 @@
+{% extends "layout_admin.twig" %}
+
+{% block content %}
+  <h1 class="display-5">Habilidades</h1>
+  <div class="alert alert-{{ classMensaje }}" role="alert">
+    {% for note in mensaje %}
+      {{ note | raw }} <br>
+    {% endfor %}
+  </div>
+  <form action="../add/skill" method="POST" enctype = "multipart/form-data">
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col">
+          <label for="nombre">Nombre:</label>
+          <input class="form-control" type="text" name="nombre" value="{{ skill['nombre'] }}">
+        </div>
+
+        <div class="col">
+          <label for="tipo">Tipo:</label>
+          <select class="form-control" name="tipo[]">
+            <option value="Lenguaje">Lenguaje</option>
+            <option value="Frameworks">Frameworks</option>
+            <option value="Herramienta">Herramienta</option>
+            <option value="Plataforma">Plataforma</option>
+            <option value="Técnica">Técnica</option>
+          </select>
+        </div>
+
+        <div class="col">
+          <label for="nivel">Nivel:</label>
+          <div class="input-group">
+            <input type="text" class="form-control" name="nivel" value="{{ skill['nivel'] }}">
+            <div class="input-group-append">
+              <span class="input-group-text">%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col d-flex align-items-end">
+          <button class="btn btn-info" type="submit" name="mode" value="save">Guardar </button>
+        </div>
+
+        
+
+      </div>
+    </div>
+  </form>
+  <br><br>
+  <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Nivel</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for key, skill in listSkill %}
+      <tr>
+        <th scope="row">{{key}}</th>
+        <td>{{skill['nombre']}}</td>
+        <td>{{skill['tipo']}}</td>
+        <td>{{skill['nivel']}}%</td>
+        <td>
+          <form action="../add/skill" method="POST" enctype = "multipart/form-data" class="d-flex align-items-center">
+            <button class="btn btn-danger" type="submit" name="mode" value="delete"><i class="far fa-trash-alt"></i></button>
+            <label for="nombre"></label>
+            <input class="form-control-plaintext invisible" type="text" name="nombre" value="{{skill['nombre']}}">
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

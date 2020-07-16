@@ -1,0 +1,72 @@
+{% extends "layout_admin.twig" %}
+
+{% block content %}
+  <!-- Cabezera -->
+  <h1 class="display-5">Datos Personales</h1>
+  <div class="alert alert-{{ classMensaje }}" role="alert">
+    {% for note in mensaje %}
+      {{ note }} <br>
+    {% endfor %}
+  </div>
+  <!-- Formulario Persona  /enctype="multipart/form-data" para subir archivos-->
+  <form action="../add/person" method="POST" enctype="multipart/form-data">
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <div class="form-group d-flex justify-content-center align-items-center mt-3">
+            {% if dataForm['avatar'] != NULL %}
+              <img id="user-photo" class="img_person" src="{{ dataForm['avatar'] }}">
+            {% else %}
+              <img id="user-photo" class="img_person" src="https://eu.ui-avatars.com/api/?name=avatar&size=150">
+            {% endif %}
+              <input type="hidden" class="form-control" name="avatar" id="url_avatar"  class="invisible">
+              <button type="button" class="btn btn-secondary btn-sm ml-3" id="avatar">Subir Imagen</button>
+          </div>
+        </div>
+        <div class="col-6 d-flex flex-column align-items-start">
+          <label for="nombre">Nombre: </label>
+          <input type="text" class="form-control" name="nombre" id="" value="{{ dataForm['nombre'] }}"><br>
+        
+          <label for="apellido">Apellidos: </label>
+          <input type="text" class="form-control" name="apellido" id="" value="{{ dataForm['apellido'] }}"><br>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <label for="especialidad">Especialidad: </label>
+          <input type="text" class="form-control" name="especialidad"  id="" value="{{ dataForm['especialidad'] }}"><br>
+        </div>
+        {# <div class="col"> #}
+          {# <label for="email"></label> #}
+          <input type="hidden" class="form-control" name="email" id="" value="{{ dataForm['email'] }}" class="invisible"><br>
+        {# </div> #}
+        <div class="col">
+          <label for="telefono">Telefono: </label>
+          <input type="text" class="form-control" name="telefono" id="" value="{{ dataForm['telefono'] }}"><br>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <textarea class="form-control" id="" rows="5" name="descripcion">{{ dataForm['descripcion'] }}</textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-check">
+            <input id="" type="hidden" class="form-check-input" name="visible" value='0'>
+            <input id="" type="checkbox" class="form-check-input"  name="visible" value='1' {% if dataForm['visible'] == true %} checked {% endif %}>
+            <label class="form-check-label" for="visible">Visible</label>
+            <p class="text-info"> Si no lo marca sus datos no serán mostrados en el curriculum</p>
+          </div>
+        </div>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-info" id="btn-guardar">Guardar</button>
+    </div>
+  </form>
+{% endblock content %}
+

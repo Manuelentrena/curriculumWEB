@@ -1,0 +1,71 @@
+{% extends "layout_admin.twig" %}
+
+{% block content %}
+  <!-- Cabezera -->
+  <h1 class="display-5">Usuarios</h1>
+  <div class="alert alert-{{ classMensaje }}" role="alert">
+    {% for note in mensaje %}
+      {{ note | raw }} <br>
+    {% endfor %}
+  </div>
+  <form action="../add/user" method="POST" enctype = "multipart/form-data">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <label for="email">Email:</label>
+          <input class="form-control" type="text" name="email" value="{{ dataForm['email'] }}">
+        </div>
+        <div class="col">
+          <label for="password">Contraseña:</label>
+          <input class="form-control" type="password" name="password" value="{{ dataForm['password'] }}">
+        </div>
+        <div class="col d-flex align-items-end">
+          <button class="btn btn-info" type="submit" name="mode" value="save">Guardar </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <br><br><br>
+  <table class="table">
+  <thead class="thead-light">
+    <tr class="">
+      <th scope="" col"" >#</th>
+      <th scope="" col"" >Email</th>
+      <th scope="" col"" >Contraseña</th>
+      <th scope="" col"" ></th>
+      <th scope="" col"" >
+        <form action="../add/user" method="POST" enctype = "multipart/form-data">
+          <div class="input-group">
+            <label for="search"></label>
+            <input type="text" class="form-control" placeholder="" name="search" value="{{ dataForm['search'] }}">
+            <div class="input-group-append">
+              <button class="btn btn-outline-primary" type="submit" name="mode" value="search"><i class="fas fa-search"></i></button>
+            </div>
+          </div>
+        </form> 
+      </th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {% for key, user in listUser %}
+      <form action="../add/user" method="POST" enctype = "multipart/form-data" class="d-flex align-items-center">
+          <th scope="row">{{ key }}<input class="form-control-plaintext invisible" type="text" name="emailorigin" value="{{user['email']}}"><label for="email"></label></th>
+          <td ><input class="form-control-plaintext" type="text" name="email" value="{{user['email']}}"><label for="email"></label></td>
+          <td ><input class="form-control-plaintext" type="password" name="password" value="{{user['password']}}"><label for="password"></label></td>
+          <td class="d-flex justify-content-end"><button class="btn btn-secondary" type="submit" name="mode" value="edit"><i class="fas fa-user-edit"></i></button></td>
+        </form>
+        <td>
+          <form action="../add/user" method="POST" enctype = "multipart/form-data" class="d-flex align-items-center">
+            <button class="btn btn-danger" type="submit" name="mode" value="delete"><i class="far fa-trash-alt"></i></button>
+            <label for="email"></label>
+            <input class="form-control-plaintext invisible" type="text" name="email" value="{{user['email']}}">
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
+
+
+  

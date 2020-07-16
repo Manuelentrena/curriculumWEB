@@ -1,0 +1,85 @@
+{% extends "layout_admin.twig" %}
+
+{% block content %}
+  <h1 class="display-5">Idiomas</h1>
+  <div class="alert alert-{{ classMensaje }}" role="alert">
+    {% for note in mensaje %}
+      {{ note | raw }} <br>
+    {% endfor %}
+  </div>
+  <form action="../add/language" method="POST" enctype = "multipart/form-data">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <label for="email">Idioma:</label>
+          <select class="form-control" name="tipo[]">
+            <option value="Inglés">Inglés</option>
+            <option value="Francés">Francés</option>
+            <option value="Alemán">Alemán</option>
+            <option value="Español">Español</option>
+          </select>
+
+        </div>
+        <div class="col d-flex flex-column">
+          <label for="email" class="pb-2">Nivel:</label>
+          <div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio"  name="nivel" value="A1">
+              <label class="form-check-label" for="inlineCheckbox1">A1</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="nivel" value="A2">
+              <label class="form-check-label" for="inlineCheckbox2">A2</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="nivel" value="B1">
+              <label class="form-check-label" for="inlineCheckbox3">B1</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="nivel" value="B2">
+              <label class="form-check-label" for="inlineCheckbox4">B2</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="nivel" value="C1">
+              <label class="form-check-label" for="inlineCheckbox5">C1</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="nivel" value="C2">
+              <label class="form-check-label" for="inlineCheckbox6">C2</label>
+            </div>
+          </div> 
+        </div>
+        <div class="col d-flex align-items-end">
+          <button class="btn btn-info" type="submit" name="mode" value="save">Guardar </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <br><br>
+  <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Idioma</th>
+      <th scope="col">Nivel</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for key, language in listLanguage %}
+      <tr>
+        <th scope="row">{{key}}</th>
+        <td>{{language['nombre']}}</td>
+        <td>{{language['nivel']}}</td>
+        <td>
+          <form action="../add/language" method="POST" enctype = "multipart/form-data" class="d-flex align-items-center">
+            <button class="btn btn-danger" type="submit" name="mode" value="delete"><i class="far fa-trash-alt"></i></button>
+            <label for="nombre"></label>
+            <input class="form-control-plaintext invisible" type="text" name="nombre" value="{{language['nombre']}}">
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

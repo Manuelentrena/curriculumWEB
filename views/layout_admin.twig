@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- CSS  -->
+  <link rel="stylesheet" href="../public/css/style.css">
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="../public/css/simple-sidebar.css">
+  <title>CurriculumWEB</title>
+</head>
+
+<body>
+
+  <div class="d-flex h-100 " id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-info border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading text-white py-4 h7">CurriculumWEB (beta)</div>
+      <div class="list-group list-group-flush">
+      {% if admin == true %} {# TODO: solo entra con este usuario #}
+        <a href="../add/user" class="list-group-item list-group-item-action bg-light" >Usuarios</a>
+      {% endif %}
+        <a href="../add/person" class="list-group-item list-group-item-action bg-light">Datos Personales</a>
+        <a href="../add/social" class="list-group-item list-group-item-action bg-light">Redes</a>
+        <a href="../add/language" class="list-group-item list-group-item-action bg-light">Idiomas</a>
+        <a href="../add/skill" class="list-group-item list-group-item-action bg-light">Habilidades</a>
+        <a href="../add/project" class="list-group-item list-group-item-action bg-light">Proyectos</a>
+        <a href="../add/work" class="list-group-item list-group-item-action bg-light">Experiencia Laboral</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper " class="w-100">
+      <nav
+        class="navbar navbar-expand-lg navbar-light bg-info border-bottom">
+        <div class="alert-link text-light py-2">
+          <button class="btn btn-secondary mr-3" id="menu-toggle">Menu</button>
+          Bienvenido {{user}}
+        </div>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link text-light" href="#"
+                >Inicio <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light " href="../">Tu curriculum</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle text-light"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Panel Usuario
+              </a>
+              <div
+                class="dropdown-menu dropdown-menu-right"
+                aria-labelledby="navbarDropdown"
+              >
+                <a class="dropdown-item" href="#">Perfil</a>
+                <a class="dropdown-item" href="#">Opciones</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="../logout">Cerrar Sesión</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container my-4">
+          
+          {% block content %}
+
+          {% endblock content %}
+          
+      </div>
+    </div>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS, Font Awesome -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/9187755eee.js" crossorigin="anonymous"></script>
+  <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+  <script src="../public/js/function.js"></script>
+  <script src="../public/js/cloudinary.js"></script>
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+</body>
+
+</html>

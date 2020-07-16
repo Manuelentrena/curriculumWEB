@@ -1,0 +1,125 @@
+{% extends "layout_admin.twig" %}
+
+{% block content %}
+  <div class="row d-flex justify-content-between align-items-center">
+    <h1 class="display-5">Experiencia Laboral</h1>
+    <div class="d-flex">
+      <a class="page-link rounded-pill border-info" href="../add/work?id=new"><i class="fas fa-plus-square text-info"></i></a>
+      <form action="../add/work" method="POST" enctype = "multipart/form-data" class="d-flex">
+        <button class="page-link rounded-pill border-info" type="submit" name="mode" value="delete"><i class="fas fa-trash text-danger"></i></button>
+        <label for="id"></label>
+        <input class="form-control" type="hidden" name="id" value="{% if workSelected['id'] is empty %}new{% else %}{{workSelected['id']}}{% endif %}">
+      </form>
+    </div>
+  </div>
+
+  <div class="alert alert-{{ classMensaje }}" role="alert">
+    {% for note in mensaje %}
+      {{ note | raw }} <br>
+    {% endfor %}
+  </div>
+
+  <form action="../add/work" method="POST" enctype = "multipart/form-data">
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col">
+          <label for="empresa">Empresa:</label>
+          <input class="form-control" type="text" name="empresa" value="{{ workSelected['empresa'] }}">
+        </div>
+
+        <div class="col">
+          <label for="puesto">Puesto:</label>
+          <input class="form-control" type="text" name="puesto" value="{{ workSelected['puesto'] }}">
+        </div>
+
+        <div class="col-0">
+          <label for="id"></label>
+          <input class="form-control" type="hidden" name="id" value="{% if workSelected['id'] is empty %}new{% else %}{{workSelected['id']}}{% endif %}">
+        </div>
+
+      </div>
+      <br>
+      <div class="row d-flex justify-content-around">
+          <div class="col-3">
+            <label for="inicio">Fecha de Inicio:</label>
+            <input class="form-control" type="date" name="inicio" id="" value="{{ workSelected['inicio'] }}">
+          </div>
+
+          <div class="col-3">
+            <label for="fin">Fecha de Fin:</label>
+            <input class="form-control" type="date" name="fin" id="" value="{{ workSelected['fin'] }}">
+          </div>
+
+          <div class="col-3">
+            <button class="btn btn-info mt-4" type="submit" name="mode" value="save">Guardar </button>
+          </div>
+      </div>
+      <br>
+      <hr width="90%" />
+      <br>
+    </div>
+
+  </form>
+
+    <br>
+    <div class="container-fluid bg-secondary text-white rounded px-3">
+      <br>
+      <div class="row px-3">
+        <h7>Lista de tareas:<h7>
+      </div>
+      <br>
+
+      <ul class="list-group w-100">
+      {% for task in listTasks %}
+        <div class="row m-1">
+          <div class="col  d-flex">
+              <form action="../add/work" method="POST" enctype = "multipart/form-data" class="d-flex w-100">      
+                <li class="list-group-item w-100 text-dark rounded-left">{{ task['description'] }}</li>
+                <button class="btn btn-outline-danger" type="submit" name="mode" value="deleteTask"><i class="fas fa-times"></i></button>
+                <label for="id"></label>
+                <input class="form-control" type="hidden" name="id" value="{% if task['id'] is empty %}new{% else %}{{task['id']}}{% endif %}">
+                <label for="idWork"></label>
+                <input class="form-control" type="hidden" name="idWork" value="{% if workSelected['id'] is empty %}new{% else %}{{workSelected['id']}}{% endif %}"> 
+              </form>  
+          </div>
+        </div>
+      {% endfor %}
+      </ul>
+
+      <br>
+
+      <div class="input-group">
+        <form action="../add/work" method="POST" enctype = "multipart/form-data" class="d-flex w-100">
+          <input type="text" class="form-control " placeholder="Añade una Tarea" name="description"><label for="description"></label>
+          <div class="input-group-append" id="button-addon4">
+            <button class="btn btn-outline-info" type="submit" name="mode" value="task"><i class="fas fa-check"></i></button>
+          </div>
+          <input class="form-control" type="hidden" name="id" value="{% if workSelected['id'] is empty %}new{% else %}{{workSelected['id']}}{% endif %}">
+        </form>
+      </div>
+      <br>
+
+    </div>
+
+    <br>
+
+    <div class="row d-flex justify-content-between align-items-center">
+      <nav aria-label="..." class="mt-2">
+        <ul class="pagination">
+          {% for key, work in listWorks %}  
+            {% if workSelected['id'] == work %}
+              <li class="page-item active" aria-current="page"><a class="page-link" href={{"../add/work?id=" ~ listWorks[key]}}>{{key+1}}<span class="sr-only">(current)</span></a></li>
+            {% else %}
+              <li class="page-item"><a class="page-link" href={{"../add/work?id=" ~ listWorks[key]}}>{{key+1}}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+
+
+
+    
+
+{% endblock content %}

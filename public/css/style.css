@@ -1,0 +1,182 @@
+#resume-header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#profile-picture {
+  width: 100%;
+  border-radius: 50%;
+}
+
+#profile-proyect {
+  width: 100%;
+  border-radius: 5%;
+}
+
+#resume-footer {
+  padding: 20px;
+  text-align: center;
+}
+
+.border-bottom-gray {
+  padding-bottom: 10px;
+  border-bottom: solid 1px darkgray;
+}
+
+.work-position {
+  margin-bottom: 40px;
+}
+
+.project {
+  margin-bottom: 40px;
+}
+
+.classMensaje {
+  background-color: brown;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+body {
+  font-family: helvetica, arial;
+  font-size: 12px;
+}
+.scrumboard {
+  margin: 0 auto;
+  width: 835px;
+}
+h1 {
+  margin-left: 20px;
+  font-size: 2rem;
+}
+
+.skill {
+  cursor: move;
+}
+
+.icon_idioma {
+  width: 20px;
+  height: 20px;
+}
+
+.icon_social {
+  width: 25px;
+  height: 25px;
+}
+
+.icon_social:hover {
+  transform: scale(1.2);
+  transition: all;
+}
+
+ul {
+  display: flex;
+  align-items: center;
+}
+
+li {
+  list-style: none;
+}
+
+.phone:before {
+  content: "";
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-image: url("../resources/telefono.svg");
+  margin-right: 8px;
+}
+
+.email:before {
+  content: "";
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-image: url("../resources/correo.svg");
+  margin-right: 8px;
+}
+
+.tipo_hab_framework:before {
+  content: "";
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-image: url("../resources/capas.svg");
+  margin-right: 8px;
+}
+
+.tipo_hab_lenguaje:before {
+  content: "";
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-image: url("../resources/lenguajes.svg");
+  margin-right: 8px;
+}
+
+.tipo_hab_herramienta:before {
+  content: "";
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-image: url("../resources/engranaje.svg");
+  margin-right: 8px;
+}
+
+.tipo_hab_plataforma:before {
+  content: "";
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-image: url("../resources/plataforma.svg");
+  margin-right: 8px;
+}
+
+.tipo_hab_conocimiento:before {
+  content: "";
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-image: url("../resources/mente.svg");
+  margin-right: 8px;
+}
+
+body {
+  background-color: honeydew;
+}
+
+svg {
+  cursor: pointer;
+}
+
+.color_hab {
+  background-color: lightsteelblue;
+}
+
+.color_idioma {
+  background-color: salmon;
+}
+
+@font-face {
+  font-family: MuseoModerno-VariableFont_wght;
+  src: url("../resources/fonts/MuseoModerno-VariableFont_wght.ttf");
+}
+
+.footer__logo {
+  font-family: MuseoModerno-VariableFont_wght;
+  color: #ffbf00;
+  font-size: 30px;
+}
+
+.img_person {
+  width: 150px;
+  border-radius: 50%;
+}
+
+.img_project {
+  width: 150px;
+  height: auto;
+  border-radius: 10%;
+}
