@@ -14,12 +14,20 @@ Puedes probar esta versión de manera gratuita abajo.
 
 #### INSTRUCCIONES DE USO:
 
-1. Elemento de lista 1
-2.  Elemento de lista 2
-    - Elemento de lista 3
-    - Elemento de lista 4
-        1. Elemento de lista 5
-        2. Elemento de lista 6
+1. **Login**
+    - Puedes usar cualquier correo, la aplicación solo determina que no sea el mismo
+    - No necesita autorización (mensaje de correo de vuelta), directamente te da acceso
+2. **Datos**
+    - La aplicación ofrece 6 apartados:
+        1. Datos Personales
+        2. Redes Sociales (Twitter, Instagram , Facebook, Linkedin)
+        3. Idiomas por niveles (Español, Francés, Alemán, Inglés)
+        4. Habilidades enfocadas a la informática ( lenguajes, framworks, plataformas, técnicas y herramientas)
+        5. Proyectos Personales
+3. **Curriculum**
+    - Puedes ver una plantilla base arriba en el link Tu **Curriculum**
+4. Salir
+    - Puedes cerrar sesión en el menu de Usuario / Salir
 
 
 
