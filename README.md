@@ -2,7 +2,7 @@
 ### Tu curriculum en Página Web
 
 ----------------------------------------
-#### * DESCRIPCIÓN:
+#### *DESCRIPCIÓN:
 
 
 
