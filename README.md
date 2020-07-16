@@ -2,7 +2,7 @@
 ### Tu curriculum en Página Web
 
 ----------------------------------------
-- #### DESCRIPCIÓN:
+* #### DESCRIPCIÓN:
 
 La aplicación tiene el objetivo de poder tener tu curriulum vitae en la web con un atractivo de diseño de muy alta calidad y usar las ventajas que ofrecen las herramientas de diseño interactivas para llevar la presentación de un curruculum a otro nivel, dejando atrás las presentaciones en papel o pdfs actuales. 
 
